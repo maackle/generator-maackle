@@ -1,5 +1,6 @@
 module.exports = (grunt) ->
 
+	livereloadPort = 35740
 
 	# Project configuration.
 	grunt.initConfig
@@ -13,9 +14,16 @@ module.exports = (grunt) ->
 			server:
 				options:
 					port: 1337
+					livereload: livereloadPort
 					base: '<%%= config.dist %>'
 
 		watch:
+			livereload:
+				files: [
+					"<%%= config.dist %>/**/*.{css,js,html}"
+				]
+				options:
+					livereload: livereloadPort
 			coffee:
 				files: ["<%%= config.app %>/coffee/*.coffee"]
 				tasks: ['coffee']
